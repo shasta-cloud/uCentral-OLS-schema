@@ -10,7 +10,7 @@ properties:
     type: number
     description:
       The speed of the physical link.
-  duplex: 
+  duplex:
     type: string
     description:
       The physical links duplex mode.
@@ -107,36 +107,84 @@ properties:
       Present only in case if port has enabled EAP processing and has any authenticated clients.
     type: object
     properties:
-    authenticated-clients:
-      description:
-        List of authenticated clients and (their) authentication data.
-      type: array
-      items:
-        type: object
-        properties:
-          authenticated-method:
-            description:
-              Authentication method used by client for it's authentication.
-            type: string
-          mac-address:
-            description:
-              MAC address of authenticated client.
-            type: string
-            format: uc-mac
-          session-time:
-            description:
-              Client session time.
-            type: integer
-          username:
-            description:
-              Client username.
-            type: string
-          vlan-type:
-            description:
-              Vlan type of authenticated client (Authorization status of the client).
-            type: string
-          vlan-id:
-            description:
-              Vlan type of authenticated client (Authorization status of the client).
-            type: integer
-            maximum: 4095
+      authenticated-clients:
+        description:
+          List of authenticated clients and (their) authentication data.
+        type: array
+        items:
+          type: object
+          properties:
+            authenticated-method:
+              description:
+                Authentication method used by client for it's authentication.
+              type: string
+            mac-address:
+              description:
+                MAC address of authenticated client.
+              type: string
+              format: uc-mac
+            session-time:
+              description:
+                Client session time.
+              type: integer
+            username:
+              description:
+                Client username.
+              type: string
+            vlan-type:
+              description:
+                Vlan type of authenticated client (Authorization status of the client).
+              type: string
+            vlan-id:
+              description:
+                Vlan type of authenticated client (Authorization status of the client).
+              type: integer
+              maximum: 4095
+  transceiver-info:
+    description:
+      Object holds information about underlying SFP module currently inserted into port's cage.
+      Some of information is read directly from module's EEPROM, while other data is measured in runtime by device's hardware (vcc for example).
+    type: object
+    properties:
+      vendor-name:
+        description:
+          Vendor (name) identifier
+        type: string
+      form-factor:
+        description:
+          Form-factor of the module itself (For example - QSFP28, QSFP56-DD etc)
+        type: string
+      supported-link-modes:
+        description:
+          Reports supported link modes of inserted module
+        type: array
+        items:
+          type: string
+      part-number:
+        description:
+          Module's part number (vendor's specific)
+        type: string
+      serial-number:
+        description:
+          Serial number of connected module
+        type: string
+      revision:
+        description:
+          Module's HW revision (same part number can have multiple revisions)
+        type: string
+      temperature:
+        description:
+          Current module's temperature
+        type: number
+      tx-optical-power:
+        description:
+          Current module's transmit optical level (power)
+        type: number
+      rx-optical-power:
+        description:
+          Current module's receive optical level (power)
+        type: number
+      max-module-power:
+        description:
+          Max power (in Watts) module can drain.
+        type: number
