@@ -408,14 +408,7 @@
                                     "id": {
                                         "type": "number"
                                     },
-                                    "direction": {
-                                        "type": "string",
-                                        "enum": [
-                                            "uplink",
-                                            "downlink"
-                                        ]
-                                    },
-                                    "interface": {
+                                    "uplink": {
                                         "type": "object",
                                         "properties": {
                                             "interface-type": {
@@ -425,11 +418,29 @@
                                                     "trunk"
                                                 ]
                                             },
-                                            "range-start": {
-                                                "type": "number"
+                                            "interface-list": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "downlink": {
+                                        "type": "object",
+                                        "properties": {
+                                            "interface-type": {
+                                                "type": "string",
+                                                "enum": [
+                                                    "port",
+                                                    "trunk"
+                                                ]
                                             },
-                                            "range-end": {
-                                                "type": "number"
+                                            "interface-list": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "string"
+                                                }
                                             }
                                         }
                                     }

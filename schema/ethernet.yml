@@ -165,7 +165,7 @@ properties:
       Omitting this configuration completely fully disables any port-isolation configuration on this given port.
     type: object
     properties:
-      session:
+      sessions:
         description:
           Allow selected port to forward traffic in the provided session-based format.
         type: array
@@ -176,30 +176,39 @@ properties:
               description:
                 Session id to configure.
               type: number
-            direction:
+            uplink:
               description:
-                Adds an interface to segmented group by setting direction to uplink or downlink
-              type: string
-              enum:
-              - uplink
-              - downlink
-            interface:
-              description:
-                Configure list interfaces.
+                Configuration object for uplink interface(s)
               type: object
               properties:
                 interface-type:
                   description:
-                    Configure list of ports or trunks.
+                    Uplink interface type - trunk or physical port.
                   type: string
                   enum:
                   - port
                   - trunk
-                range-start:
+                interface-list:
                   description:
-                    Port (/trunk) range start
-                  type: number
-                range-end:
+                    List of interfaces (either physical or trunk ports)
+                  type: array
+                  items:
+                    type: string
+            downlink:
+              description:
+                Configuration object for downlink interface(s)
+              type: object
+              properties:
+                interface-type:
                   description:
-                    Port (/trunk) range end.
-                  type: number
+                    Downlink interface type - trunk or physical port.
+                  type: string
+                  enum:
+                  - port
+                  - trunk
+                interface-list:
+                  description:
+                    List of interfaces (either physical or trunk ports)
+                  type: array
+                  items:
+                    type: string
