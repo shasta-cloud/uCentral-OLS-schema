@@ -400,7 +400,7 @@
                 "port-isolation": {
                     "type": "object",
                     "properties": {
-                        "session": {
+                        "sessions": {
                             "type": "array",
                             "items": {
                                 "type": "object",
